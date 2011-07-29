@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata schemaVersion="2">
+    <id>Beethoven</id>
+    <version>1.0</version>
+    <title>Beethoven</title>
+    <authors>Mehmetali Shaqiri</authors>
+    <owners>Spartansoft L.L.C.</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A lightweight framework that enables extensibility in a Asp.Net MVC 3.0 application by using Managed Extensibility Framework and Asp.Net MVC 3.0 Dependency Resolver.</description>
+    <summary>A lightweight framework that enables extensibility in a Asp.Net MVC 3.0 application by using Managed Extensibility Framework and Asp.Net MVC 3.0 Dependency Resolver.</summary>
+    <language>en-US</language>
+    <tags>beethoven, spartansoft, composition, mef, asp.net mvc</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.ComponentModel.Composition" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="System.Web.Mvc" targetFramework=".NETFramework4.0" />
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file src="content\App_Start\BeethovenPreStart.cs.pp" target="content\App_Start\BeethovenPreStart.cs.pp" />
+    <file src="lib\Beethoven.dll" target="lib\Beethoven.dll" />
+  </files>
+</package>
