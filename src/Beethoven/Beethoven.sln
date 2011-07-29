@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beethoven", "Beethoven\Beethoven.csproj", "{61DDFF14-E24D-48B7-B4E2-567A60005A83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beethoven.Plugins", "Beethoven.Plugins\Beethoven.Plugins.csproj", "{5F35676C-8424-4B83-A77A-965CD4E61CFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{61DDFF14-E24D-48B7-B4E2-567A60005A83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61DDFF14-E24D-48B7-B4E2-567A60005A83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61DDFF14-E24D-48B7-B4E2-567A60005A83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61DDFF14-E24D-48B7-B4E2-567A60005A83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F35676C-8424-4B83-A77A-965CD4E61CFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F35676C-8424-4B83-A77A-965CD4E61CFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F35676C-8424-4B83-A77A-965CD4E61CFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F35676C-8424-4B83-A77A-965CD4E61CFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
