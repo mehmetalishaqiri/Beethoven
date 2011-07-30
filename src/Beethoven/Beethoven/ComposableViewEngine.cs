@@ -76,7 +76,7 @@ namespace Beethoven
         {
             List<string> views = new List<string>();
             _plugins.ForEach(plugin =>
-                views.Add("~/" + GlobalConstants.Plugins + "/" + plugin + ".dll/Views/{1}/{0}.cshtml")
+                views.Add("~/" + GlobalConstants.Plugins + "/" + plugin + "/Views/{1}/{0}.cshtml")
             );
             return views.ToArray();
         }
