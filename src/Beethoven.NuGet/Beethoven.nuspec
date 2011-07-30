@@ -11,6 +11,9 @@
     <summary>A lightweight framework that enables extensibility in a Asp.Net MVC 3.0 application by using Managed Extensibility Framework and Asp.Net MVC 3.0 Dependency Resolver.</summary>
     <language>en-US</language>
     <tags>beethoven, spartansoft, composition, mef, asp.net mvc</tags>
+    <dependencies>
+      <dependency id="WebActivator" version="1.4.1" />
+    </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.ComponentModel.Composition" targetFramework=".NETFramework4.0" />
       <frameworkAssembly assemblyName="System.Web.Mvc" targetFramework=".NETFramework4.0" />
