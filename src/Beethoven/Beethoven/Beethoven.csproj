@@ -54,6 +54,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\Beethoven.Configuration\Beethoven.Configuration.csproj">
+      <Project>{980D7387-768F-4E75-96EC-963B7C050411}</Project>
+      <Name>Beethoven.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Beethoven.Plugins\Beethoven.Plugins.csproj">
       <Project>{5F35676C-8424-4B83-A77A-965CD4E61CFE}</Project>
       <Name>Beethoven.Plugins</Name>

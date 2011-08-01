@@ -35,6 +35,7 @@ using Beethoven.Plugins.MetaData;
 using System.Web;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using System.Web.Hosting;
+using Beethoven.Plugins.Tasks;
 
 namespace Beethoven
 {
@@ -87,12 +88,25 @@ namespace Beethoven
 
             //The SetResolver method of DependencyResolver class provides a registration point for dependency injection containers.
             System.Web.Mvc.DependencyResolver.SetResolver(new DependencyResolver(container));
+            
 
             RegisterHttpModules();
 
             //HostingEnvironment.RegisterVirtualPathProvider(new LCMSAssemblyResourceProvider());
         }
 
+        #endregion
+
+        #region RunStartupTasks
+
+        public static void RunStartupTasks()
+        {
+            var tasks = Container.GetExports<IStartupTask, IStartupTaskMetadata>();
+            
+            foreach (var task in tasks)
+                task.Value.Run(Container);
+        }
+	
         #endregion
 
         #region RegisterViewEngine
