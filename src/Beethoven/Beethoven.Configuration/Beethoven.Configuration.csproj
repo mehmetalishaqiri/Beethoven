@@ -47,6 +47,8 @@
     <Compile Include="AudiLog.cs" />
     <Compile Include="BeethovenConfiguration.cs" />
     <Compile Include="DataSource.cs" />
+    <Compile Include="DefaultPlugin.cs" />
+    <Compile Include="Languages.cs" />
     <Compile Include="MailServer.cs" />
     <Compile Include="Membership.cs" />
     <Compile Include="MetaTags.cs" />

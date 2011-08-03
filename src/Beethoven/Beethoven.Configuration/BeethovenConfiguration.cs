@@ -120,6 +120,24 @@ namespace Beethoven.Configuration
             }
         }
 
+        [ConfigurationProperty("Languages", IsRequired = true)]
+        public Languages Languages
+        {
+            get
+            {
+                return (Languages)base["Languages"];
+            }
+        }
+
+        [ConfigurationProperty("DefaultPlugin", IsRequired = true)]
+        public DefaultPlugin DefaultPlugin
+        {
+            get
+            {
+                return (DefaultPlugin)base["DefaultPlugin"];
+            }
+        }
+
         public override bool IsReadOnly()
         {
             return false;
