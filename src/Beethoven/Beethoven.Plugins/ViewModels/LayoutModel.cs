@@ -32,6 +32,8 @@ using Beethoven.Plugins.MetaData;
 using System.Web;
 using System.Web.Routing;
 using Beethoven.Plugins.Shared;
+using Beethoven.Configuration;
+using System.Configuration;
 
 
 namespace Beethoven.Plugins.ViewModels
@@ -41,8 +43,17 @@ namespace Beethoven.Plugins.ViewModels
     /// </summary>   
     public class LayoutModel
     {
-        public string Title { get; set; }
+        private readonly BeethovenConfiguration _configuration = ConfigurationManager.GetSection("BeethovenConfiguration") as BeethovenConfiguration;
 
+        private string _title;
+
+        public string Title 
+        { 
+            get { return _title; }
+            set { _title = value; }
+        }
+
+        
 
         /// <summary>
         /// All present plugins
@@ -54,7 +65,8 @@ namespace Beethoven.Plugins.ViewModels
         {
             //initialize list
             Plugins = new List<Plugin>();
-            
+
+            _title = _configuration.Application.ApplicationName;
         }
 
         /// <summary>
