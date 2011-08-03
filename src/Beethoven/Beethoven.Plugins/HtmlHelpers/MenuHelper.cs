@@ -50,8 +50,9 @@ namespace Beethoven.Plugins.HtmlHelpers
 
             TagBuilder ul = new TagBuilder("ul");
 
-            if (plugin == null)
+            if (plugin == null || plugin.MenuItems == null)
                 return new HtmlString(String.Empty);
+
 
             foreach (MenuItem item in plugin.MenuItems)
             {
