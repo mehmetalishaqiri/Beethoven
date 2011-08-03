@@ -21,6 +21,7 @@
   </metadata>
   <files>
     <file src="content\App_Start\BeethovenPreStart.cs.pp" target="content\App_Start\BeethovenPreStart.cs.pp" />
+    <file src="lib\Beethoven.Configuration.dll" target="lib\Beethoven.Configuration.dll" />
     <file src="lib\Beethoven.dll" target="lib\Beethoven.dll" />
   </files>
 </package>

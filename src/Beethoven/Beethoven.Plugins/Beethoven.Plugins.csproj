@@ -31,10 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\EntityFramework.4.1.10715.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
@@ -44,10 +52,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Caching\CacheManager.cs" />
+    <Compile Include="Caching\ICacheManager.cs" />
+    <Compile Include="Controllers\BaseDashboardController.cs" />
     <Compile Include="Controllers\LayoutController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="HtmlHelpers\DashboardHelper.cs" />
     <Compile Include="HtmlHelpers\MenuHelper.cs" />
+    <Compile Include="Linguist\ILanguage.cs" />
+    <Compile Include="Linguist\ILocaleString.cs" />
+    <Compile Include="Linguist\ILocaleStringTranslator.cs" />
+    <Compile Include="Linguist\Language.cs" />
+    <Compile Include="Linguist\Languages.cs" />
+    <Compile Include="Linguist\LocaleString.cs" />
+    <Compile Include="Linguist\LocaleStringsTranslator.cs" />
+    <Compile Include="Linguist\Localization.cs" />
+    <Compile Include="Linguist\LocalizationHandler.cs" />
+    <Compile Include="Linguist\Translator.cs" />
     <Compile Include="Menu\MenuItem.cs" />
+    <Compile Include="MetaData\IStartupTaskMetadata.cs" />
+    <Compile Include="MetaData\WidgetAttribute.cs" />
+    <Compile Include="MetaData\IWidgetMetadata.cs" />
     <Compile Include="MetaData\IAction.cs" />
     <Compile Include="MetaData\IMenuItemMetadata.cs" />
     <Compile Include="MetaData\IPluginMetadata.cs" />
@@ -57,9 +82,26 @@
     <Compile Include="PluginComparer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\GlobalConstants.cs" />
+    <Compile Include="Tasks\IStartupTask.cs" />
+    <Compile Include="Tasks\StartupTaskAttribute.cs" />
     <Compile Include="ViewModels\LayoutModel.cs" />
     <Compile Include="ViewModels\LayoutViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Widgets\IWidgetRepository.cs" />
+    <Compile Include="Widgets\IWidgetService.cs" />
+    <Compile Include="Widgets\Widget.cs" />
+    <Compile Include="Widgets\WidgetRepository.cs" />
+    <Compile Include="Widgets\WidgetsDataContext.cs" />
+    <Compile Include="Widgets\WidgetService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Beethoven.Configuration\Beethoven.Configuration.csproj">
+      <Project>{980D7387-768F-4E75-96EC-963B7C050411}</Project>
+      <Name>Beethoven.Configuration</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
