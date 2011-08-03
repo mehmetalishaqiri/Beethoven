@@ -39,137 +39,137 @@ using Beethoven.Plugins.Tasks;
 
 namespace Beethoven
 {
-    /// <summary>
-    /// Beethoven is responsible for the initialization of the HOST and composition of plugins
-    /// </summary>
-    public static class Composer
-    {
-        #region Private Members
+	/// <summary>
+	/// Beethoven is responsible for the initialization of the HOST and composition of plugins
+	/// </summary>
+	public static class Composer
+	{
+		#region Private Members
 
-        /// <summary>
-        /// Gets the current container.
-        /// </summary>
-        [Export(typeof(CompositionContainer))]
-        public static CompositionContainer Container { get; private set; }
-        
-        
-        #endregion
+		/// <summary>
+		/// Gets the current container.
+		/// </summary>
+		[Export(typeof(CompositionContainer))]
+		public static CompositionContainer Container { get; private set; }
+		
+		
+		#endregion
 
-        #region Compose
+		#region Compose
 
-        public static void Compose()
-        {
+		public static void Compose()
+		{
 
-            ICompositionContainerFactory compositionFactory = new CompositionContainerFactory();
+			ICompositionContainerFactory compositionFactory = new CompositionContainerFactory();
 
-            //get an instance of the MEF composition container created by Composition Container Factory
-            CompositionContainer container = compositionFactory.CreateCompositionContainer();
+			//get an instance of the MEF composition container created by Composition Container Factory
+			CompositionContainer container = compositionFactory.CreateCompositionContainer();
 
-            Container = container;
-            // BeethovenRoutes = RouteTable.Routes;
-            try
-            {
-                CompositionBatch batch = new CompositionBatch();
-                batch.AddExportedValue(container);                
-                
-                ////compose the existing parts.
-                container.ComposeParts(batch);
-            }
-            catch //(CompositionException compositionException)
-            {
-                //TO DO:
-                // Log composition exception
-            }
+			Container = container;
+			// BeethovenRoutes = RouteTable.Routes;
+			try
+			{
+				CompositionBatch batch = new CompositionBatch();
+				batch.AddExportedValue(container);                
+				
+				////compose the existing parts.
+				container.ComposeParts(batch);
+			}
+			catch //(CompositionException compositionException)
+			{
+				//TO DO:
+				// Log composition exception
+			}
 
 
 
-            //set the cuctom controller factory
-            //ControllerBuilder.Current.SetControllerFactory(new ControllerFactory(container));
+			//set the cuctom controller factory
+			//ControllerBuilder.Current.SetControllerFactory(new ControllerFactory(container));
 
-            //The SetResolver method of DependencyResolver class provides a registration point for dependency injection containers.
-            System.Web.Mvc.DependencyResolver.SetResolver(new DependencyResolver(container));
-            
+			//The SetResolver method of DependencyResolver class provides a registration point for dependency injection containers.
+			System.Web.Mvc.DependencyResolver.SetResolver(new DependencyResolver(container));
+			
 
-            RegisterHttpModules();
+			RegisterHttpModules();
 
-            //HostingEnvironment.RegisterVirtualPathProvider(new LCMSAssemblyResourceProvider());
-        }
+			//HostingEnvironment.RegisterVirtualPathProvider(new LCMSAssemblyResourceProvider());
+		}
 
-        #endregion
+		#endregion
 
-        #region RunStartupTasks
+		#region RunStartupTasks
 
-        public static void RunStartupTasks()
-        {
-            var tasks = Container.GetExports<IStartupTask, IStartupTaskMetadata>();
-            
-            foreach (var task in tasks)
-                task.Value.Run(Container);
-        }
+		public static void RunStartupTasks()
+		{
+			var tasks = Container.GetExports<IStartupTask, IStartupTaskMetadata>();
+			
+			foreach (var task in tasks)
+				task.Value.Run(Container);
+		}
 	
-        #endregion
+		#endregion
 
-        #region RegisterViewEngine
+		#region RegisterViewEngine
 
-        /// <summary>
-        /// Registers the viewengine based on available plugins
-        /// </summary>
-        /// <param name="clearExisting">Indicates whether the existing view engines should be removed or not.</param>
-        public static void RegisterViewEngine(bool clearExisting)
-        {
-            //get all exported controllers
-            IEnumerable<Lazy<IController, IPluginMetadata>> exports = Container.GetExports<IController, IPluginMetadata>();
+		/// <summary>
+		/// Registers the viewengine based on available plugins
+		/// </summary>
+		/// <param name="clearExisting">Indicates whether the existing view engines should be removed or not.</param>
+		public static void RegisterViewEngine(bool clearExisting)
+		{
+			//get all exported controllers
+			IEnumerable<Lazy<IController, IPluginMetadata>> exports = Container.GetExports<IController, IPluginMetadata>();
 
-            //from exported controllers, get PluginID from controller's metadata
-            List<string> plugins = exports.Select(p => p.Metadata.PluginID).Distinct().ToList();
+			//from exported controllers, get PluginID from controller's metadata
+			List<string> plugins = exports.Select(p => p.Metadata.PluginID).Distinct().ToList();
 
-            //check if we should remove existing viewengines
-            if (clearExisting)
-                ViewEngines.Engines.Clear();
+			//check if we should remove existing viewengines
+			if (clearExisting)
+				ViewEngines.Engines.Clear();
 
-            //register the custom view engine
-            ViewEngines.Engines.Add(new ComposableViewEngine(plugins));
-        }
+			//register the custom view engine
+			ViewEngines.Engines.Add(new ComposableViewEngine(plugins));
+		}
 
-        #endregion        
+		#endregion        
 
-        #region RegisterAllAreas
+		#region RegisterAllAreas
 
-        public static void RegisterAllAreas()
-        {
-            //TO DO:
-            //register an area for each plugin
+		public static void RegisterAllAreas()
+		{
+			//TO DO:
+			//register an area for each plugin
 
-            var areas = Container.GetExports<AreaRegistration>();
-            foreach (var export in areas)
-            {
-                AreaRegistration area = export.Value;                
-                var context = new AreaRegistrationContext(area.AreaName,RouteTable.Routes);
-                area.RegisterArea(context);
-            }
+			var areas = Container.GetExports<AreaRegistration>();
+			foreach (var export in areas)
+			{
+				AreaRegistration area = export.Value;                
+				var context = new AreaRegistrationContext(area.AreaName,RouteTable.Routes);
+				area.RegisterArea(context);
+			}
 
-            
+			
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-        #region RegisterHttpModules
+		#region RegisterHttpModules
 
-        static void RegisterHttpModules()
-        {
-            var modules = Container.GetExports<IHttpModule>();
-            foreach (var export in modules)
-            {
-                
-                IHttpModule module = export.Value;
-                
-                var moduleType = module.GetType();
-                
-                DynamicModuleUtility.RegisterModule(moduleType);
-            }
-        }
+		static void RegisterHttpModules()
+		{
+			var modules = Container.GetExports<IHttpModule>();
+			foreach (var export in modules)
+			{
+				
+				IHttpModule module = export.Value;
+				
+				var moduleType = module.GetType();
+				
+				DynamicModuleUtility.RegisterModule(moduleType);
+			}
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }
