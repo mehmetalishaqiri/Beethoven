@@ -71,42 +71,46 @@ namespace Beethoven.Plugins.Controllers
             {
                 foreach (var plugin in _pluginsMetadata)
                 {
-                    var p = new Plugin
+                    if (layoutModel.Plugins.Where(p => p.PluginID == plugin.Metadata.PluginID).Count() == 0)
                     {
-                        PluginID = plugin.Metadata.PluginID,
-                        PluginName = plugin.Metadata.PluginName,
-                        Controller = plugin.Metadata.Controller,
-                        Version = plugin.Metadata.Version
-                    };                    
 
-                    if (_menuItemsMetadata != null)
-                    {
-                        var query = _menuItemsMetadata.Where(item=>
-                            item.Metadata.PluginID.Equals(plugin.Metadata.PluginID)
-                        ).OrderBy(m=>m.Metadata.OrderNumber);
-                        if (query.Count() > 0)
+                        var p = new Plugin
                         {
-                            p.MenuItems = new List<MenuItem>();
-                            foreach (var m in query)
+                            PluginID = plugin.Metadata.PluginID,
+                            PluginName = plugin.Metadata.PluginName,
+                            Controller = plugin.Metadata.Controller,
+                            Version = plugin.Metadata.Version
+                        };
+
+                        if (_menuItemsMetadata != null)
+                        {
+                            var query = _menuItemsMetadata.Where(item =>
+                                item.Metadata.PluginID.Equals(plugin.Metadata.PluginID)
+                            ).OrderBy(m => m.Metadata.OrderNumber);
+                            if (query.Count() > 0)
                             {
-                                p.MenuItems.Add(new MenuItem
+                                p.MenuItems = new List<MenuItem>();
+                                foreach (var m in query)
                                 {
-                                    PluginID = m.Metadata.PluginID,
-                                    ParentID = m.Metadata.ParentID,
-                                    Action = m.Metadata.Action,
-                                    Controller = m.Metadata.Controller,
-                                    DisplayText = m.Metadata.DisplayText,
-                                    IsDefault = m.Metadata.IsDefault,
-                                    OrderNumber = m.Metadata.OrderNumber
-                                });
+                                    p.MenuItems.Add(new MenuItem
+                                    {
+                                        PluginID = m.Metadata.PluginID,
+                                        ParentID = m.Metadata.ParentID,
+                                        Action = m.Metadata.Action,
+                                        Controller = m.Metadata.Controller,
+                                        DisplayText = m.Metadata.DisplayText,
+                                        IsDefault = m.Metadata.IsDefault,
+                                        OrderNumber = m.Metadata.OrderNumber
+                                    });
+                                }
                             }
                         }
-                    }
 
-                    layoutModel.Plugins.Add(p);
+                        layoutModel.Plugins.Add(p);
+                    }
                 }
             }
-            
+
             return layoutModel;
         }
 
