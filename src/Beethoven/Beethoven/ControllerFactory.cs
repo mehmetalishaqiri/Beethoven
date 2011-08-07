@@ -83,11 +83,26 @@ namespace Beethoven
             //Gets all the exports ==> get all the exported controllers with their associated metadata
             IEnumerable<Lazy<IController, IPluginMetadata>> controllers = _container.GetExports<IController, IPluginMetadata>();
 
-            //match the requested controller with an exported controller
-            IController controller = controllers
-                .Where(c => c.Metadata.Controller.Equals(controllerName, StringComparison.OrdinalIgnoreCase))
-                .Select(c => c.Value)
-                .FirstOrDefault();
+            IController controller = null;
+            var area = requestContext.RouteData.DataTokens["area"];
+
+            if (area != null)
+            {
+                //match the requested controller with an exported controller
+                controller = controllers
+                    .Where(c => c.Metadata.Controller.Equals(controllerName, StringComparison.OrdinalIgnoreCase) && c.Metadata.PluginID.Equals(area.ToString(),StringComparison.OrdinalIgnoreCase))
+                    .Select(c => c.Value)
+                    .FirstOrDefault();
+            }
+            else
+            {
+                //match the requested controller with an exported controller
+                controller = controllers
+                    .Where(c => c.Metadata.Controller.Equals(controllerName, StringComparison.OrdinalIgnoreCase))
+                    .Select(c => c.Value)
+                    .FirstOrDefault();
+            }
+            
 
             return controller ?? base.CreateController(requestContext, controllerName);
         }
