@@ -120,12 +120,12 @@ namespace Beethoven.Configuration
             }
         }
 
-        [ConfigurationProperty("Languages", IsRequired = true)]
-        public Languages Languages
+        [ConfigurationProperty("Linguist", IsRequired = true)]
+        public Linguist Linguist
         {
             get
             {
-                return (Languages)base["Languages"];
+                return (Linguist)base["Linguist"];
             }
         }
 

@@ -33,16 +33,26 @@ namespace Beethoven.Configuration
     /// <summary>
     /// Represents a configuration element within a configuration file - The language path in web configuration section.
     /// </summary>
-    public class Languages : ConfigurationElement
+    public class Linguist : ConfigurationElement
     {
         /// <summary>
         /// Gets or sets the languages file path in web configuration section
         /// </summary>
-        [ConfigurationProperty("Path", IsRequired = true)]
-        public string Path
+        [ConfigurationProperty("LanguagesPath", IsRequired = true)]
+        public string LanguagesPath
         {
-            get { return (string)base["Path"]; }
-            set { base["Path"] = value; }
+            get { return (string)base["LanguagesPath"]; }
+            set { base["LanguagesPath"] = value; }
+        }
+
+        /// <summary>
+        /// Determines whether localization is enabled
+        /// </summary>
+        [ConfigurationProperty("Enabled", IsRequired = true)]
+        public string Enabled
+        {
+            get { return (string)base["Enabled"]; }
+            set { base["Enabled"] = value; }
         }
     }
 }
