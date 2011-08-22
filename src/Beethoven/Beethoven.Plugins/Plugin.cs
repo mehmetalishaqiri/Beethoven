@@ -57,6 +57,10 @@ namespace Beethoven.Plugins
         /// </summary>
         public string Controller { get; set; }
 
+        /// <summary>
+        /// The display order of plugin
+        /// </summary>
+        public int OrderNumber { get; set; }
 
         /// <summary>
         /// Menu items of a plugin
