@@ -48,7 +48,6 @@
     <Compile Include="Application.cs" />
     <Compile Include="Articles.cs" />
     <Compile Include="AudiLog.cs" />
-    <Compile Include="BaseConfiguration.cs" />
     <Compile Include="BeethovenConfiguration.cs" />
     <Compile Include="DataSource.cs" />
     <Compile Include="DefaultPlugin.cs" />

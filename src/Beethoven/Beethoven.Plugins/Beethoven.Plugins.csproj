@@ -98,7 +98,6 @@
     <Compile Include="PluginComparer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\SerializationHelper.cs" />
-    <Compile Include="Services\DynamicServiceRoute.cs" />
     <Compile Include="Shared\GlobalConstants.cs" />
     <Compile Include="Tasks\IStartupTask.cs" />
     <Compile Include="Tasks\StartupTaskAttribute.cs" />
