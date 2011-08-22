@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata schemaVersion="2">
     <id>Beethoven.Plugins</id>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
     <title>Beethoven.Plugins</title>
     <authors>Mehmetali Shaqiri</authors>
     <owners>Spartansoft L.L.C.</owners>
