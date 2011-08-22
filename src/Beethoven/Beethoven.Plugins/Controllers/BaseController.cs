@@ -33,6 +33,8 @@ using System.ComponentModel.Composition.Hosting;
 using Beethoven.Plugins.Menu;
 using Beethoven.Plugins.MetaData;
 using Beethoven.Plugins.Controllers;
+using Beethoven.Plugins.Security;
+using Beethoven.Plugins.Serialization;
 
 
 namespace Beethoven.Plugins.Controllers
@@ -57,6 +59,23 @@ namespace Beethoven.Plugins.Controllers
         [ImportMany(AllowRecomposition = true)]
         private IEnumerable<Lazy<ActionResult, IMenuItemMetadata>> _menuItemsMetadata { get; set; }
 
+        private IEnumerable<Capability> _userCapabilities
+        {
+            get
+            {
+                if (Session["UserCapabilities"] != null)
+                {
+                    //return (List<Capability>)SerializationHelper<List<Capability>>.DeserializeObject(Session["UserCapabilities"].ToString());
+
+                    return (IEnumerable<Capability>)Session["UserCapabilities"];
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
 
         /// <summary>
         /// Fill the master page view model with information about plugins and menuitems
@@ -66,11 +85,12 @@ namespace Beethoven.Plugins.Controllers
         {
             //create a new view model for master page
             LayoutModel layoutModel = new LayoutModel();
-
+            
             if (_pluginsMetadata != null)
             {
                 foreach (var plugin in _pluginsMetadata)
                 {
+
                     if (layoutModel.Plugins.Where(p => p.PluginID == plugin.Metadata.PluginID).Count() == 0)
                     {
 
@@ -79,7 +99,8 @@ namespace Beethoven.Plugins.Controllers
                             PluginID = plugin.Metadata.PluginID,
                             PluginName = plugin.Metadata.PluginName,
                             Controller = plugin.Metadata.Controller,
-                            Version = plugin.Metadata.Version
+                            Version = plugin.Metadata.Version,
+                            OrderNumber = plugin.Metadata.OrderNumber
                         };
 
                         if (_menuItemsMetadata != null)
@@ -90,25 +111,44 @@ namespace Beethoven.Plugins.Controllers
                             if (query.Count() > 0)
                             {
                                 p.MenuItems = new List<MenuItem>();
-                                foreach (var m in query)
+                                if (_userCapabilities != null)
                                 {
-                                    p.MenuItems.Add(new MenuItem
+                                    foreach (var m in query)
                                     {
-                                        PluginID = m.Metadata.PluginID,
-                                        ParentID = m.Metadata.ParentID,
-                                        Action = m.Metadata.Action,
-                                        Controller = m.Metadata.Controller,
-                                        DisplayText = m.Metadata.DisplayText,
-                                        IsDefault = m.Metadata.IsDefault,
-                                        OrderNumber = m.Metadata.OrderNumber
-                                    });
+                                       // var attributes = m.Value.GetType().GetCustomAttributes(typeof(GuardianAttribute), false);
+
+                                       // foreach (GuardianAttribute attribute in attributes)
+                                       // {
+                                            if (_userCapabilities.Any(userCapability => m.Metadata.Capabilities.Contains(userCapability.ID)))
+                                            {
+
+                                                p.MenuItems.Add(new MenuItem
+                                                {
+                                                    PluginID = m.Metadata.PluginID,
+                                                    ParentID = m.Metadata.ParentID,
+                                                    Action = m.Metadata.Action,
+                                                    Controller = m.Metadata.Controller,
+                                                    DisplayText = m.Metadata.DisplayText,
+                                                    IsDefault = m.Metadata.IsDefault,
+                                                    OrderNumber = m.Metadata.OrderNumber
+                                                });
+                                            }
+                                        //}
+                                        
+                                    }
+
+                                    
+
                                 }
+                                
                             }
                         }
 
                         layoutModel.Plugins.Add(p);
-                    }
+                    }    
+                
                 }
+                layoutModel.Plugins = layoutModel.Plugins.OrderBy(p => p.OrderNumber).ToList();
             }
 
             return layoutModel;

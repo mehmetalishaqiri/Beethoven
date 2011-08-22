@@ -31,12 +31,14 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Beethoven.Plugins.Widgets;
+using Beethoven.Plugins.Security;
 
 namespace Beethoven.Plugins.Controllers
 {
     /// <summary>
     /// BaseDashboardController is intended to serve as a base class for all dashboards in the host/plugins
     /// </summary> 
+    [Guardian]
     public class BaseDashboardController : BaseController
     {
         
