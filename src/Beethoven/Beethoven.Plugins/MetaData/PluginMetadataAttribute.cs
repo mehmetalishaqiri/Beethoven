@@ -60,6 +60,11 @@ namespace Beethoven.Plugins.MetaData
         /// The name of the controller
         /// </summary>
         public string Controller { get; set; }
+
+        /// <summary>
+        /// The display order of plugin
+        /// </summary>
+        public int OrderNumber { get; set; }
         
     }
 }
