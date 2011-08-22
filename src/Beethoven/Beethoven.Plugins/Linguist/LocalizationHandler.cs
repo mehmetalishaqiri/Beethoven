@@ -11,7 +11,7 @@ using Beethoven.Plugins.Linguist;
 using Beethoven.Configuration;
 
 
-namespace KEK.Linguist
+namespace Beethoven.Plugins.Linguist
 {
     /// <summary>
     /// An Http Handler designed to process HTTP web requests
@@ -37,7 +37,7 @@ namespace KEK.Linguist
         {
             context.Response.ContentType = "text/xml";
             //get the XML languages file.
-            XDocument doc = XDocument.Load(((BeethovenConfiguration)WebConfigurationManager.GetSection("BeethovenConfiguration")).Languages.Path);
+            XDocument doc = XDocument.Load(((BeethovenConfiguration)WebConfigurationManager.GetSection("BeethovenConfiguration")).Linguist.LanguagesPath);
             context.Response.Write(doc);
         }
 
