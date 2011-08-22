@@ -26,6 +26,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+using Beethoven.Plugins.Data;
 
 
 namespace Beethoven.Plugins.Widgets
@@ -33,7 +34,7 @@ namespace Beethoven.Plugins.Widgets
     [Export(typeof(IWidgetRepository))]
     public class WidgetRepository : IWidgetRepository
     {
-        WidgetsDataContext _dataContext = new WidgetsDataContext();
+        PluginsDataContext _dataContext = new PluginsDataContext();
 
         public Widget GetById(Guid id)
         {
