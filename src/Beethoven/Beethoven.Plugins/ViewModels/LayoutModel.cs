@@ -87,7 +87,10 @@ namespace Beethoven.Plugins.ViewModels
         {
             get
             {
-                return Plugins.Where(p => p.Controller == CurrentController).SingleOrDefault();
+
+                var area = RouteTable.Routes.GetRouteData(new HttpContextWrapper(HttpContext.Current)).DataTokens["area"].ToString();
+                var plugin = Plugins.Where(p => p.PluginID.Equals(area)).SingleOrDefault();
+                return plugin;
             }
         }
 
