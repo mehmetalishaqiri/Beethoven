@@ -67,7 +67,7 @@ namespace Beethoven.Plugins.Linguist
             {
                 get
                 {
-                    return ((BeethovenConfiguration)WebConfigurationManager.GetSection("BeethovenConfiguration")).Languages.Path;
+                    return ((BeethovenConfiguration)WebConfigurationManager.GetSection("BeethovenConfiguration")).Linguist.LanguagesPath;
                 }
             }
 
