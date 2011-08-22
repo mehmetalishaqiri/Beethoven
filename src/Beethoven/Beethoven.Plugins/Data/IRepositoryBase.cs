@@ -25,6 +25,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Linq.Expressions;
 
 namespace Beethoven.Plugins.Data
 {
@@ -37,6 +38,10 @@ namespace Beethoven.Plugins.Data
         IEnumerable<T> GetItems();
 
         IEnumerable<T> GetItems(int pageIndex, int pageSize);
+
+        IEnumerable<T> GetItems(Expression<Func<T, bool>> query);
+
+        IEnumerable<T> GetItems(Expression<Func<T, bool>> query, int pageIndex, int pageSize);
 
         T GetItem(object id);
 
