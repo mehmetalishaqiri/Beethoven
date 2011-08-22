@@ -49,5 +49,8 @@ namespace Beethoven.Plugins.Menu
 
 
         public bool IsDefault { get; set; }
+
+
+        public string[] Capabilities { get; set; }
     }
 }
