@@ -58,7 +58,7 @@ namespace Beethoven.Plugins.HtmlHelpers
             {
                 TagBuilder li = new TagBuilder("li");
                 var link =
-                li.InnerHtml = System.Web.Mvc.Html.LinkExtensions.ActionLink(helper, item.DisplayText, item.Action, item.Controller,null,null).ToString();
+                li.InnerHtml = System.Web.Mvc.Html.LinkExtensions.ActionLink(helper, item.DisplayText, item.Action, item.Controller, new { area = item.PluginID }, null).ToString();
                 ul.InnerHtml += string.Format("  {0}{1}", li.ToString(), Environment.NewLine);
             }
 
