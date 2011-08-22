@@ -39,8 +39,16 @@ namespace Beethoven.Plugins.MetaData
     {
         #region Class Constructors
 
+        private string[] _validCapabilities;
 
-        public MenuizeMeAttribute() : base(typeof(IMenuItemMetadata)) { }
+        public string[] Capabilities { get { return _validCapabilities; } }
+
+        public MenuizeMeAttribute(params string[] validCapabilities) 
+            : base(typeof(IMenuItemMetadata)) {
+
+                _validCapabilities = validCapabilities;
+        
+        }
 
 
         #endregion

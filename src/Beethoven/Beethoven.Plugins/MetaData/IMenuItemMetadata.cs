@@ -43,6 +43,7 @@ namespace Beethoven.Plugins.MetaData
         string ParentID { get;  }       
 
         int OrderNumber { get;  }
-        
+
+        string[] Capabilities { get; }
     }
 }
