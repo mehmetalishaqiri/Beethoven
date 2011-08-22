@@ -41,6 +41,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -52,11 +55,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\UserProfile.cs" />
+    <Compile Include="Controls\CheckBoxListInfo.cs" />
+    <Compile Include="Data\IRepositoryBase.cs" />
+    <Compile Include="Helpers\GravatarHelper.cs" />
+    <Compile Include="HtmlHelpers\CheckBoxListHtmlHelper.cs" />
+    <Compile Include="Linguist\LinguistDataAnnotationsModelMetadataProvider.cs" />
+    <Compile Include="Linguist\LinguistRequiredAttributeAdapter.cs" />
+    <Compile Include="Security\Capability.cs" />
+    <Compile Include="Security\CapabilityRegistration.cs" />
+    <Compile Include="Security\GuardianAttribute.cs" />
+    <Compile Include="Security\ICapability.cs" />
+    <Compile Include="Security\Role.cs" />
     <Compile Include="Caching\CacheManager.cs" />
     <Compile Include="Caching\ICacheManager.cs" />
     <Compile Include="Controllers\BaseDashboardController.cs" />
     <Compile Include="Controllers\LayoutController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Data\PluginsDataContextInitializer.cs" />
     <Compile Include="HtmlHelpers\DashboardHelper.cs" />
     <Compile Include="HtmlHelpers\MenuHelper.cs" />
     <Compile Include="Linguist\ILanguage.cs" />
@@ -81,17 +97,20 @@
     <Compile Include="Plugin.cs" />
     <Compile Include="PluginComparer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization\SerializationHelper.cs" />
+    <Compile Include="Services\DynamicServiceRoute.cs" />
     <Compile Include="Shared\GlobalConstants.cs" />
     <Compile Include="Tasks\IStartupTask.cs" />
     <Compile Include="Tasks\StartupTaskAttribute.cs" />
     <Compile Include="ViewModels\LayoutModel.cs" />
     <Compile Include="ViewModels\LayoutViewModelBase.cs" />
+    <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Widgets\IWidgetRepository.cs" />
     <Compile Include="Widgets\IWidgetService.cs" />
     <Compile Include="Widgets\Widget.cs" />
     <Compile Include="Widgets\WidgetRepository.cs" />
-    <Compile Include="Widgets\WidgetsDataContext.cs" />
+    <Compile Include="Data\PluginsDataContext.cs" />
     <Compile Include="Widgets\WidgetService.cs" />
   </ItemGroup>
   <ItemGroup>

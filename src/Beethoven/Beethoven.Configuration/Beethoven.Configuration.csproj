@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Spartans.DataTier">
+      <HintPath>..\..\..\..\..\Libraries\Spartans.DataTier.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
@@ -45,10 +48,11 @@
     <Compile Include="Application.cs" />
     <Compile Include="Articles.cs" />
     <Compile Include="AudiLog.cs" />
+    <Compile Include="BaseConfiguration.cs" />
     <Compile Include="BeethovenConfiguration.cs" />
     <Compile Include="DataSource.cs" />
     <Compile Include="DefaultPlugin.cs" />
-    <Compile Include="Languages.cs" />
+    <Compile Include="Linguist.cs" />
     <Compile Include="MailServer.cs" />
     <Compile Include="Membership.cs" />
     <Compile Include="MetaTags.cs" />
