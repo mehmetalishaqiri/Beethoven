@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata schemaVersion="2">
     <id>Beethoven</id>
-    <version>1.0.2</version>
+    <version>1.1</version>
     <title>Beethoven</title>
     <authors>Mehmetali Shaqiri</authors>
     <owners>Spartansoft L.L.C.</owners>
