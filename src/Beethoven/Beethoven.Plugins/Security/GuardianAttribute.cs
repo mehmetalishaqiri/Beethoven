@@ -41,7 +41,13 @@ namespace Beethoven.Plugins.Security
         /// <summary>
         /// Valid user capabilities for an action method or controller.
         /// </summary>
-        public string[] Capabilities { get { return _validCapabilities; } }
+        public string[] Capabilities
+        {
+            get
+            {
+                return _validCapabilities;
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of Beethoven.Plugins.Security.GuardianAttribute
@@ -73,7 +79,7 @@ namespace Beethoven.Plugins.Security
 
                 if (userCapabilities != null && _validCapabilities.Length != 0)
                 {
-                    if (!userCapabilities.Any(userCapability => _validCapabilities.Contains(userCapability.ID)))
+                    if (!userCapabilities.Any(userCapability => _validCapabilities.Contains(userCapability.Name)))
                         filterContext.HttpContext.Response.Redirect("~/Errors/UnAuthorized");
                 }
                 else if (userCapabilities == null && _validCapabilities.Length != 0)

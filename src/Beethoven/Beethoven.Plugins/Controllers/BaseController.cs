@@ -119,7 +119,7 @@ namespace Beethoven.Plugins.Controllers
 
                                        // foreach (GuardianAttribute attribute in attributes)
                                        // {
-                                            if (_userCapabilities.Any(userCapability => m.Metadata.Capabilities.Contains(userCapability.ID)))
+                                            if (_userCapabilities.Any(userCapability => m.Metadata.Capabilities.Contains(userCapability.Name)))
                                             {
 
                                                 p.MenuItems.Add(new MenuItem

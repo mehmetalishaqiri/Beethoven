@@ -42,8 +42,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -58,15 +60,20 @@
     <Compile Include="Account\UserProfile.cs" />
     <Compile Include="Controls\CheckBoxListInfo.cs" />
     <Compile Include="Data\IRepositoryBase.cs" />
+    <Compile Include="Helpers\Validator.cs" />
     <Compile Include="Helpers\GravatarHelper.cs" />
     <Compile Include="HtmlHelpers\CheckBoxListHtmlHelper.cs" />
     <Compile Include="Linguist\LinguistDataAnnotationsModelMetadataProvider.cs" />
     <Compile Include="Linguist\LinguistRequiredAttributeAdapter.cs" />
     <Compile Include="Security\Capability.cs" />
+    <Compile Include="Security\CapabilityProvider.cs" />
     <Compile Include="Security\CapabilityRegistration.cs" />
+    <Compile Include="Security\SecurityDataContext.cs" />
+    <Compile Include="Security\Role.cs" />
     <Compile Include="Security\GuardianAttribute.cs" />
     <Compile Include="Security\ICapability.cs" />
-    <Compile Include="Security\Role.cs" />
+    <Compile Include="Security\ICapabilityProvider.cs" />
+    <Compile Include="Security\IRoleProvider.cs" />
     <Compile Include="Caching\CacheManager.cs" />
     <Compile Include="Caching\ICacheManager.cs" />
     <Compile Include="Controllers\BaseDashboardController.cs" />
@@ -97,6 +104,8 @@
     <Compile Include="Plugin.cs" />
     <Compile Include="PluginComparer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\RoleCapability.cs" />
+    <Compile Include="Security\RoleProvider.cs" />
     <Compile Include="Serialization\SerializationHelper.cs" />
     <Compile Include="Shared\GlobalConstants.cs" />
     <Compile Include="Tasks\IStartupTask.cs" />
@@ -104,6 +113,8 @@
     <Compile Include="ViewModels\LayoutModel.cs" />
     <Compile Include="ViewModels\LayoutViewModelBase.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\RolesViewModel.cs" />
+    <Compile Include="ViewModels\UsersInRoleViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Widgets\IWidgetRepository.cs" />
     <Compile Include="Widgets\IWidgetService.cs" />
@@ -123,9 +134,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetDir)$(TargetFileName)" "$(SolutionDir)..\Beethoven.Plugins.NuGet\lib\$(TargetFileName)"
-
-"$(SolutionDir)..\..\tools\NuGet.exe"  pack "$(SolutionDir)..\Beethoven.Plugins.NuGet\Beethoven.Plugins.nuspec" /o "$(SolutionDir)..\..\packages"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

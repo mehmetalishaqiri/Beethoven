@@ -1,22 +1,42 @@
-﻿using System;
+﻿/*
+ * DeepThought.Account
+ * 
+ * Written for .NET 4.0 in C#
+ * 
+ * Copyright (C) 2009, 2010, 2011. All Right Reserved, Spartansoft L.L.C.
+ * http://spartansoft.org
+ * 
+ * Proprietary and Confidential information of Spartansoft L.L.C. 
+ * Redistribution and use in source and binary forms, with or without modification, 
+ * without the authorization of Spartansoft L.L.C.  is prohibited. * 
+ * 
+ * "Whatever happens SPARTAN's code must stand ... or at least crash responsibly."
+ *  
+ * File Name: Role.cs
+ * 
+ * File Authors:
+ * 		Mehmetali N. Shaqiri, m.shaqiri@spartansoft.org
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
+using System.ComponentModel.DataAnnotations;
 
 namespace Beethoven.Plugins.Security
 {
+    [DataContract]    
     public class Role
     {
-        public Guid ApplicationId { get; set; }
-
+        [DataMember]
+        [Key]
         public Guid RoleId { get; set; }
 
-        public string Name { get; set; }
+        [DataMember]
+        public string RoleName { get; set; }
 
-        public string LoweredRoleName { get; set; }
 
-        public string  Description { get; set; }
 
-        public virtual ICollection<Capability> Capabilities { get; set; }
     }
 }

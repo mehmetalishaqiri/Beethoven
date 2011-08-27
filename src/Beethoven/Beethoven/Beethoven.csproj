@@ -58,16 +58,11 @@
       <Project>{980D7387-768F-4E75-96EC-963B7C050411}</Project>
       <Name>Beethoven.Configuration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Beethoven.Plugins\Beethoven.Plugins.csproj">
-      <Project>{5F35676C-8424-4B83-A77A-965CD4E61CFE}</Project>
-      <Name>Beethoven.Plugins</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetDir)$(TargetFileName)" "$(SolutionDir)..\Beethoven.NuGet\lib\$(TargetFileName)"
-
-"$(SolutionDir)..\..\tools\NuGet.exe"  pack "$(SolutionDir)..\Beethoven.NuGet\Beethoven.nuspec" /o "$(SolutionDir)..\..\packages"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

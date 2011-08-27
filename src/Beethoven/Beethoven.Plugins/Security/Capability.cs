@@ -27,15 +27,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
+using System.Runtime.Serialization;
+using System.ComponentModel.DataAnnotations;
 
 namespace Beethoven.Plugins.Security
 {
-    [Serializable]
-    [XmlRoot("Capability")]
+    [DataContract]
     public class Capability
     {
-        public string ID { get; set; }
-        
+        [DataMember]
+        [Key]
+        public Guid ID { get; set; }
+
+        [DataMember]
+        public string Name { get; set; }
+
+
+        [DataMember]
         public string Description { get; set; }
+
+        [ForeignKey("CapabilityID")]
+        public virtual ICollection<RoleCapability> RoleCapabilities { get; set; }
     }
 }

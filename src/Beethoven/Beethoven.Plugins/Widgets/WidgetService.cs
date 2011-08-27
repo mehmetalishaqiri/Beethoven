@@ -29,6 +29,8 @@ using System.Linq;
 using System.Web.Mvc;
 using Beethoven.Plugins.MetaData;
 using Beethoven.Plugins.Shared;
+using Beethoven.Plugins.Security;
+using System.Web;
 
 
 namespace Beethoven.Plugins.Widgets
@@ -48,30 +50,42 @@ namespace Beethoven.Plugins.Widgets
 
             var widgets = new List<Widget>();
 
-            bool exists;
+            bool exists, isAuthorized;
             foreach (var item in _menuItemsMetadata.Where(m =>
                                   m.Metadata.WidgetPluginID == pluginId))
             {
                 exists = false;
+                isAuthorized = false;
 
-                foreach (var w in userWidgets)
+                List<Capability> userCapabilities = (List<Capability>)HttpContext.Current.Session["UserCapabilities"];
+                string[] validCapabilities = item.Metadata.Capabilities;
+                if (userCapabilities != null && item.Metadata.Capabilities.Length != 0)
                 {
-                    if (item.Metadata.WidgetAlias == w.Alias)
-                    {
-                        exists = true;
-                        break;
-                    }
+                    if (userCapabilities.Any(userCapability => item.Metadata.Capabilities.Contains(userCapability.Name)))
+                        isAuthorized = true;
                 }
-                if (!exists)
+
+                if (isAuthorized)
                 {
-                    widgets.Add(new Widget
+                    foreach (var w in userWidgets)
                     {
-                        DisplayText = item.Metadata.WidgetDisplayText,
-                        PluginID = item.Metadata.WidgetPluginID,
-                        Controller = item.Metadata.WidgetController,
-                        Action = item.Metadata.WidgetAction,
-                        Alias = item.Metadata.WidgetAlias
-                    });
+                        if (item.Metadata.WidgetAlias == w.Alias)
+                        {
+                            exists = true;
+                            break;
+                        }
+                    }
+                    if (!exists)
+                    {
+                        widgets.Add(new Widget
+                        {
+                            DisplayText = item.Metadata.WidgetDisplayText,
+                            PluginID = item.Metadata.WidgetPluginID,
+                            Controller = item.Metadata.WidgetController,
+                            Action = item.Metadata.WidgetAction,
+                            Alias = item.Metadata.WidgetAlias
+                        });
+                    }
                 }
             }
 
@@ -80,7 +94,39 @@ namespace Beethoven.Plugins.Widgets
 
         public IEnumerable<Widget> GetWidgetsForUser(string pluginId, Guid userId)
         {
-            return _widgetRepository.GetWidgetsForUser(pluginId, userId);
+            var userWidgets = _widgetRepository.GetWidgetsForUser(pluginId, userId);
+
+            var widgets = new List<Widget>();
+
+            bool exists, isAuthorized;
+            foreach (var item in _menuItemsMetadata.Where(m =>
+                                  m.Metadata.WidgetPluginID == pluginId))
+            {
+                exists = false;
+                isAuthorized = false;
+
+                List<Capability> userCapabilities = (List<Capability>)HttpContext.Current.Session["UserCapabilities"];
+                string[] validCapabilities = item.Metadata.Capabilities;
+                if (userCapabilities != null && item.Metadata.Capabilities.Length != 0)
+                {
+                    if (userCapabilities.Any(userCapability => item.Metadata.Capabilities.Contains(userCapability.Name)))
+                        isAuthorized = true;
+                }
+
+                if (isAuthorized)
+                {
+                    foreach (var w in userWidgets)
+                    {
+                        if (item.Metadata.WidgetAlias == w.Alias)
+                        {
+                            widgets.Add(w);
+                        }
+                    }
+                }
+            }
+
+            return widgets;
+            //return _widgetRepository.GetWidgetsForUser(pluginId, userId);
         }
 
         public void Add(Widget widget)

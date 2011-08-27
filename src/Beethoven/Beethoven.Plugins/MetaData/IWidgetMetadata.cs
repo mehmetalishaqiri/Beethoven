@@ -36,6 +36,9 @@ namespace Beethoven.Plugins.MetaData
     /// </summary>
     public interface IWidgetMetadata
     {
+
+        string[] Capabilities { get; }
+
         string WidgetPluginID { get; }
 
         string WidgetDisplayText { get; }

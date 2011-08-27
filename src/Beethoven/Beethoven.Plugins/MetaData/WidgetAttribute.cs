@@ -39,13 +39,33 @@ namespace Beethoven.Plugins.MetaData
     {
         #region Class Constructors
 
+        private string[] _validCapabilities;
 
-        public WidgetAttribute() : base(typeof(IWidgetMetadata)) { }
+        //public string[] Capabilities { get { return _validCapabilities; } }
+
+        public WidgetAttribute(params string[] validCapabilities)
+            : base(typeof(IWidgetMetadata))
+        {
+
+            _validCapabilities = validCapabilities;
+
+        }
+
+       // public WidgetAttribute() : base(typeof(IWidgetMetadata)) { }
 
 
         #endregion
 
         #region IWidgetMetadata Members
+
+
+        public string[] Capabilities
+        {
+            get
+            {
+                return _validCapabilities;
+            }
+        }
 
         public string WidgetPluginID { get; set; }
 
