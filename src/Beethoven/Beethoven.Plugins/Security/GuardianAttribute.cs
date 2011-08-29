@@ -65,28 +65,32 @@ namespace Beethoven.Plugins.Security
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
 
-            if (_validCapabilities.Length == 0)
+            if (!filterContext.HttpContext.User.Identity.IsAuthenticated)
             {
-                if (!filterContext.HttpContext.User.Identity.IsAuthenticated)
-                {
-                    filterContext.HttpContext.Response.Redirect("~/Account/TheGateway?ReturnUrl=" + filterContext.HttpContext.Request.Url);
-                }
+                string redirectOnSuccess = filterContext.HttpContext.Request.Url.AbsolutePath;
+                string redirectUrl = string.Format("~/Account/TheGateway?ReturnUrl={0}", redirectOnSuccess);
+                filterContext.Result = new RedirectResult(redirectUrl);
             }
             else
             {
 
-                List<Capability> userCapabilities = (List<Capability>)filterContext.HttpContext.Session["UserCapabilities"];
+                if (_validCapabilities.Length > 0)
+                {
 
-                if (userCapabilities != null && _validCapabilities.Length != 0)
-                {
-                    if (!userCapabilities.Any(userCapability => _validCapabilities.Contains(userCapability.Name)))
+                    List<Capability> userCapabilities = (List<Capability>)filterContext.HttpContext.Session["UserCapabilities"];
+
+                    if (userCapabilities != null && _validCapabilities.Length != 0)
+                    {
+                        if (!userCapabilities.Any(userCapability => _validCapabilities.Contains(userCapability.Name)))
+                            filterContext.HttpContext.Response.Redirect("~/Errors/UnAuthorized");
+                    }
+                    else if (userCapabilities == null && _validCapabilities.Length != 0)
+                    {
                         filterContext.HttpContext.Response.Redirect("~/Errors/UnAuthorized");
-                }
-                else if (userCapabilities == null && _validCapabilities.Length != 0)
-                {
-                    filterContext.HttpContext.Response.Redirect("~/Errors/UnAuthorized");
+                    }
                 }
             }
+
 
         }
     }
