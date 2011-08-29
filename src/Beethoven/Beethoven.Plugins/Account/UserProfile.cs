@@ -47,14 +47,17 @@ namespace Beethoven.Plugins.Account
 
         public static ProfileViewModel GetProfile()
         {
-            return new ProfileViewModel
-            {
-                UserName = CurrentUser.UserName,
-                FullName = CurrentUser.FullName,
-                Email = CurrentUser.Email,
-                Phone = CurrentUser.Phone,
-                Gravatar = CurrentUser.Gravatar
-            };
+            if (CurrentUser != null)
+                return new ProfileViewModel
+                {
+                    UserName = CurrentUser.UserName,
+                    FullName = CurrentUser.FullName,
+                    Email = CurrentUser.Email,
+                    Phone = CurrentUser.Phone,
+                    Gravatar = CurrentUser.Gravatar
+                };
+            else
+                return new ProfileViewModel();
         }
 
         public static UserProfile GetUser(string username)
