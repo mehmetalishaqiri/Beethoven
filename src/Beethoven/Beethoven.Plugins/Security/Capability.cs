@@ -33,6 +33,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Beethoven.Plugins.Security
 {
     [DataContract]
+    [Serializable]
     public class Capability
     {
         [DataMember]
