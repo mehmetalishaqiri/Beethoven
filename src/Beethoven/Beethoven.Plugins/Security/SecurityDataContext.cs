@@ -46,9 +46,9 @@ namespace Beethoven.Plugins.Security
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Capability>().ToTable("Capabilities");
+            modelBuilder.Entity<Capability>().ToTable("DeepThought.Capabilities");
 
-            modelBuilder.Entity<RoleCapability>().ToTable("RoleCapabilities");
+            modelBuilder.Entity<RoleCapability>().ToTable("DeepThought.RoleCapabilities");
 
             modelBuilder.Entity<Role>().ToTable("aspnet_Roles");
 
