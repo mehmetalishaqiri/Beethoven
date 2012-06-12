@@ -1,16 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
-  <metadata schemaVersion="2">
-    <id>Beethoven</id>
-    <version>1.1</version>
-    <title>Beethoven</title>
+  <metadata>
+    <version>1.2</version>
     <authors>Mehmetali Shaqiri</authors>
     <owners>Spartansoft L.L.C.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>A lightweight framework that enables extensibility in a Asp.Net MVC 3.0 application by using Managed Extensibility Framework and Asp.Net MVC 3.0 Dependency Resolver.</description>
-    <summary>A lightweight framework that enables extensibility in a Asp.Net MVC 3.0 application by using Managed Extensibility Framework and Asp.Net MVC 3.0 Dependency Resolver.</summary>
-    <language>en-US</language>
-    <tags>beethoven, spartansoft, composition, mef, asp.net mvc</tags>
     <dependencies>
       <dependency id="WebActivator" version="1.4.1" />
     </dependencies>
@@ -18,6 +11,13 @@
       <frameworkAssembly assemblyName="System.ComponentModel.Composition" targetFramework=".NETFramework4.0" />
       <frameworkAssembly assemblyName="System.Web.Mvc" targetFramework=".NETFramework4.0" />
     </frameworkAssemblies>
+    <id>Beethoven</id>
+    <title>Beethoven</title>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A lightweight framework that enables extensibility in a Asp.Net MVC 3.0 application by using Managed Extensibility Framework and Asp.Net MVC 3.0 Dependency Resolver.</description>
+    <summary>A lightweight framework that enables extensibility in a Asp.Net MVC 3.0 application by using Managed Extensibility Framework and Asp.Net MVC 3.0 Dependency Resolver.</summary>
+    <language>en-US</language>
+    <tags>beethoven, spartansoft, composition, mef, asp.net mvc</tags>
   </metadata>
   <files>
     <file src="content\App_Start\BeethovenPreStart.cs.pp" target="content\App_Start\BeethovenPreStart.cs.pp" />

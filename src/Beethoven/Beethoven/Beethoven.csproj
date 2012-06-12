@@ -31,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Beethoven.Configuration, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Beethoven.Plugins.1.22\lib\Beethoven.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Beethoven.Plugins, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Beethoven.Plugins.1.22\lib\Beethoven.Plugins.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -52,16 +58,8 @@
     <Compile Include="ControllerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Beethoven.Configuration\Beethoven.Configuration.csproj">
-      <Project>{980D7387-768F-4E75-96EC-963B7C050411}</Project>
-      <Name>Beethoven.Configuration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Beethoven.Plugins\Beethoven.Plugins.csproj">
-      <Project>{5F35676C-8424-4B83-A77A-965CD4E61CFE}</Project>
-      <Name>Beethoven.Plugins</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

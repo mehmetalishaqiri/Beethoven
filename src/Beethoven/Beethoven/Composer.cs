@@ -36,6 +36,7 @@ using System.Web;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using System.Web.Hosting;
 using Beethoven.Plugins.Tasks;
+using System.Reflection;
 
 namespace Beethoven
 {
@@ -59,7 +60,8 @@ namespace Beethoven
 
 		public static void Compose()
 		{
-
+			try
+			{
 			ICompositionContainerFactory compositionFactory = new CompositionContainerFactory();
 
 			//get an instance of the MEF composition container created by Composition Container Factory
@@ -67,18 +69,30 @@ namespace Beethoven
 
 			Container = container;
 			// BeethovenRoutes = RouteTable.Routes;
-			try
-			{
+			
 				CompositionBatch batch = new CompositionBatch();
 				batch.AddExportedValue(container);                
 				
 				////compose the existing parts.
 				container.ComposeParts(batch);
+
+				//The SetResolver method of DependencyResolver class provides a registration point for dependency injection containers.
+				System.Web.Mvc.DependencyResolver.SetResolver(new DependencyResolver(container));
+
+
+				RegisterHttpModules();
 			}
-			catch //(CompositionException compositionException)
+			catch (ReflectionTypeLoadException tLException)
 			{
-				//TO DO:
-				// Log composition exception
+				var loaderMessages = new StringBuilder();
+				loaderMessages.AppendLine("Beethoven Composition Error: While trying to load composable parts the follwing loader exceptions were found: ");
+				foreach (var loaderException in tLException.LoaderExceptions)
+				{
+					loaderMessages.AppendLine(loaderException.Message);
+				}
+
+				// this is one of our custom exception types.
+				throw new Exception(loaderMessages.ToString(), tLException);
 			}
 
 
@@ -86,11 +100,7 @@ namespace Beethoven
 			//set the cuctom controller factory
 			//ControllerBuilder.Current.SetControllerFactory(new ControllerFactory(container));
 
-			//The SetResolver method of DependencyResolver class provides a registration point for dependency injection containers.
-			System.Web.Mvc.DependencyResolver.SetResolver(new DependencyResolver(container));
 			
-
-			RegisterHttpModules();
 
 			//HostingEnvironment.RegisterVirtualPathProvider(new LCMSAssemblyResourceProvider());
 		}
