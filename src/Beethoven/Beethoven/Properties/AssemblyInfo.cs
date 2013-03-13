@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Beethoven")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A lightweight framework that enables extensibility in a Asp.Net MVC 3.0 application by using Managed Extensibility Framework and Asp.Net MVC 3.0 Dependency Resolver.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("SPARTANSOFT L.L.C.")]
 [assembly: AssemblyProduct("Beethoven")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2011")]
 [assembly: AssemblyTrademark("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.5")]
+[assembly: AssemblyFileVersion("1.5")]

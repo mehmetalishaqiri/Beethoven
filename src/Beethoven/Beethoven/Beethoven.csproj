@@ -12,6 +12,8 @@
     <AssemblyName>Beethoven</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,11 +33,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Beethoven.Configuration, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Beethoven.Plugins.1.22\lib\Beethoven.Configuration.dll</HintPath>
+    <Reference Include="Beethoven.Configuration">
+      <HintPath>..\packages\Beethoven.Plugins.1.28\lib\Beethoven.Configuration.dll</HintPath>
     </Reference>
-    <Reference Include="Beethoven.Plugins, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Beethoven.Plugins.1.22\lib\Beethoven.Plugins.dll</HintPath>
+    <Reference Include="Beethoven.Plugins">
+      <HintPath>..\packages\Beethoven.Plugins.1.28\lib\Beethoven.Plugins.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -63,10 +65,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetDir)$(TargetFileName)" "$(SolutionDir)..\Beethoven.NuGet\lib\$(TargetFileName)"
-
- "$(SolutionDir)..\..\tools\NuGet.exe"  pack "$(SolutionDir)..\Beethoven.NuGet\Beethoven.nuspec" /o "$(SolutionDir)..\..\packages"</PostBuildEvent>
+    <PostBuildEvent>"$(SolutionDir).nuget\NuGet.exe"  pack "$(ProjectPath)" -Prop Configuration=Release /o "$(SolutionDir)..\..\packages"</PostBuildEvent>
   </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
