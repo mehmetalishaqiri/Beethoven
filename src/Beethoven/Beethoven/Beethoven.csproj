@@ -34,15 +34,20 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Beethoven.Configuration">
-      <HintPath>..\packages\Beethoven.Plugins.1.28\lib\Beethoven.Configuration.dll</HintPath>
+      <HintPath>..\packages\Beethoven.Configuration.1.29.0.0\lib\net40\Beethoven.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Beethoven.Plugins">
-      <HintPath>..\packages\Beethoven.Plugins.1.28\lib\Beethoven.Plugins.dll</HintPath>
+      <HintPath>..\packages\Beethoven.Plugins.1.29.0.0\lib\net40\Beethoven.Plugins.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
@@ -61,6 +66,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
