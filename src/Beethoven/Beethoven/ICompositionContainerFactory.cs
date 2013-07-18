@@ -25,6 +25,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.ComponentModel.Composition.Hosting;
 
@@ -41,7 +42,7 @@ namespace Beethoven
         /// </summary>
         /// <param name="path">The path of the assemblies.</param>
         /// <returns>An instance of <see cref="CompositionContainer"/></returns>
-        CompositionContainer CreateCompositionContainer();
+        CompositionContainer CreateCompositionContainer(Assembly currentAssembly);
 
     }
 }

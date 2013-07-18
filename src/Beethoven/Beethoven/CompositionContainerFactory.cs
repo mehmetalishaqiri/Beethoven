@@ -25,6 +25,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.ComponentModel.Composition.Hosting;
 using System.IO;
@@ -45,7 +46,7 @@ namespace Beethoven
         /// </summary>
         /// <param name="path">The path of the assemblies.</param>
         /// <returns>An instance of <see cref="CompositionContainer"/></returns>
-        public CompositionContainer CreateCompositionContainer()
+        public CompositionContainer CreateCompositionContainer(Assembly currentAssembly)
         {
             //= new DirectoryCatalog(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, GlobalConstants.Bin));
             string plugins = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, GlobalConstants.Plugins);
@@ -63,6 +64,7 @@ namespace Beethoven
                 select new DirectoryCatalog(
                     Path.Combine(GlobalConstants.Plugins, dir)));
 
+            catalog.Catalogs.Add(new AssemblyCatalog(currentAssembly));
 
             return new CompositionContainer(catalog);
         }
