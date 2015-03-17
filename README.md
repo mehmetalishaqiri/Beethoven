@@ -10,4 +10,4 @@ A lightweight framework for building plugin based web applications using Asp.Net
 [Beethoven.Sample](https://github.com/spartanbeg/Beethoven.Sample) - A sample plugin based web application build using Beethoven
 
 ## Attribution
-Beethoven  clip art (Beethoven.gif) licensed from the Clip Art Gallery on [DiscoverySchool.com](DiscoverySchool.com)
+Beethoven  clip art ([Beethoven.gif](http://school.discoveryeducation.com/clipart/clip/beethovn.html)) licensed from the Clip Art Gallery on [DiscoverySchool.com](http://discoveryschool.com)
