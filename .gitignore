@@ -41,5 +41,8 @@ build/*
 # Exclude ALL DLLs? (
 # *.dll
 
-# Exclude plugins from HOST
-src/LCMS.Host/Plugins
+
+/packages/
+!packages/repositories.config
+
+.nuget/

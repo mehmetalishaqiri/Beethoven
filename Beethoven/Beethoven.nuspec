@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Beethoven</id>
+    <title>Beethoven</title>
+    <version>1.0.1-alpha</version>
+    <authors>Mehmetali Shaqiri</authors>
+    <owners>Mehmetali Shaqiri</owners>
+    <copyright>Copyright (C) 2011 Mehmetali Shaqiri (mehmetalishaqiri@gmail.com)</copyright>
+    <description>Beethoven - A lightweight framework for building plugin based web applications using Asp.Net MVC and MEF.</description>
+    <summary>Beethoven - A lightweight framework for building plugin based web applications using Asp.Net MVC and MEF.</summary>
+    <language>en-US</language>
+    <tags>beethoven, spartansoft, composition, mef, asp.net mvc</tags>
+    <projectUrl>https://github.com/spartanbeg/Beethoven</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <dependencies>
+      <dependency id="WebActivator" />
+      <dependency id="Microsoft.AspNet.Mvc" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.ComponentModel.Composition" targetFramework=".NETFramework4.0" />
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file src="App_Start\BeethovenPreStart.cs.pp" target="content\App_Start\BeethovenPreStart.cs.pp" />
+  </files>
+</package>
