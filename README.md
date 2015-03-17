@@ -3,8 +3,8 @@ A lightweight framework for building plugin based web applications using Asp.Net
 
 [<img src="https://img.shields.io/nuget/v/Beethoven.svg">](https://www.nuget.org/packages/Beethoven)
 
-# Usages
-* [DeepThought](https://github.com/spartanbeg/DeepThought)
+# Examples
+[Beethoven.Sample](https://github.com/spartanbeg/Beethoven) - A sample plugin based web application build using Beethoven
 
 # Attribution
-* Beethoven  clip art (Beethoven.gif) licensed from the Clip Art Gallery on [DiscoverySchool.com](DiscoverySchool.com)
+Beethoven  clip art (Beethoven.gif) licensed from the Clip Art Gallery on [DiscoverySchool.com](DiscoverySchool.com)
