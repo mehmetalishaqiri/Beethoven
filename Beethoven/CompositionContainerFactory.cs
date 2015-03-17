@@ -53,6 +53,8 @@ namespace Beethoven
             //= new DirectoryCatalog(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, GlobalConstants.Bin));
             string plugins = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, GlobalConstants.Plugins);
 
+            if (!Directory.Exists(plugins))
+                Directory.CreateDirectory(plugins);
 
             string[] dirs = Directory.GetDirectories(plugins)
                 .Union(

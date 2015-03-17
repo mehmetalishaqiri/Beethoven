@@ -37,7 +37,7 @@ namespace $rootnamespace$.App_Start {
     public static class Composer {
         public static void Start() {
             
-			Beethoven.Composer.Compose();
+			Beethoven.Composer.Compose(System.Reflection.Assembly.GetExecutingAssembly());
 
             Beethoven.Composer.RegisterViewEngine(true);
 
