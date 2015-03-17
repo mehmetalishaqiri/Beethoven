@@ -3,15 +3,17 @@
   <metadata>
     <id>Beethoven</id>
     <title>Beethoven</title>
-    <version>1.0.1-alpha</version>
+    <version>1.0.2-alpha</version>
     <authors>Mehmetali Shaqiri</authors>
     <owners>Mehmetali Shaqiri</owners>
     <copyright>Copyright (C) 2011 Mehmetali Shaqiri (mehmetalishaqiri@gmail.com)</copyright>
-    <description>Beethoven - A lightweight framework for building plugin based web applications using Asp.Net MVC and MEF.</description>
-    <summary>Beethoven - A lightweight framework for building plugin based web applications using Asp.Net MVC and MEF.</summary>
+    <description>A lightweight framework for building plugin based web applications using Asp.Net MVC and MEF.</description>
+    <summary>A lightweight framework for building plugin based web applications using Asp.Net MVC and MEF.</summary>
     <language>en-US</language>
     <tags>beethoven, spartansoft, composition, mef, asp.net mvc</tags>
     <projectUrl>https://github.com/spartanbeg/Beethoven</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/spartanbeg/Beethoven/master/Beethoven/beethoven.gif</iconUrl>
+    <licenseUrl>https://github.com/spartanbeg/Beethoven/blob/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <dependencies>
       <dependency id="WebActivator" />
