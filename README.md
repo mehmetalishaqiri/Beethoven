@@ -3,7 +3,7 @@ A lightweight framework for building plugin based web applications using Asp.Net
 
 [<img src="https://img.shields.io/nuget/v/Beethoven.svg">](https://www.nuget.org/packages/Beethoven)
 
-## Dependecies
+## Dependencies
 [Beethoven.Plugins](https://github.com/spartanbeg/Beethoven.Plugins) - A package that is used to develop/extend plugins for the host composed by Beethoven
 
 ## Examples
